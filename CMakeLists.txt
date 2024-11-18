@@ -14,6 +14,7 @@ find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
+find_package(spdlog REQUIRED)
 
 include(FetchContent)
 
@@ -25,6 +26,7 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(json)
 
+add_subdirectory(lib)
 add_subdirectory(src)
 
 if(BUILD_TESTING)

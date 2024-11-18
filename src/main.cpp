@@ -1,24 +1,28 @@
-#include "ros/ros_node.hpp"
 #include <rclcpp/rclcpp.hpp>
-#include <iostream>
+#include <spdlog/spdlog.h>
+
+#include "ros_node.hpp"
 
 int main(int argc, char **argv)
 {
+
+    spdlog::set_level(spdlog::level::debug);
     rclcpp::init(argc, argv);
 
     auto node = std::make_shared<dvl_a50::ros::DvlA50DriverNode>();
 
-    std::cout << R"(
+    const auto launch_message = R"(
          ______     ___            _    ____   ___  
-        |  _ \ \   / / |          / \  | ___| / _ \ 
+        |  _ \ \   / / |          / \  | ___| / _ \
         | | | \ \ / /| |   _____ / _ \ |___ \| | | |
         | |_| |\ V / | |__|_____/ ___ \ ___) | |_| |
-        |____/  \_/ _|_____|   /_/   \_\____/ \___/ 
+        |____/  \_/ _|_____|   /_/   \_\____/ \___/
         |  _ \ _ __(_)_   _____ _ __                
         | | | | '__| \ \ / / _ \ '__|               
         | |_| | |  | |\ V /  __/ |                  
         |____/|_|  |_| \_/ \___|_|                  
-    )" << std::endl;
+    )";
+    spdlog::info(launch_message);
 
     rclcpp::spin(node);
     rclcpp::shutdown();

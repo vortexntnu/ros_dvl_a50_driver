@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <cstdint>
-#include <nlohmann/json.hpp>  // Include the JSON library
+#include <nlohmann/json.hpp>
 
 namespace dvl_a50::lib
 {
@@ -75,7 +75,6 @@ inline void from_json(const nlohmann::json& j, dvl_a50::lib::VelocityMessage& ms
     j.at("vz").get_to(msg.vz);
     j.at("fom").get_to(msg.fom);
 
-    // Parse covariance matrix
     const auto& cov_json = j.at("covariance");
     for (size_t i = 0; i < msg.covariance.size(); ++i) {
         cov_json.at(i).get_to(msg.covariance[i]);
