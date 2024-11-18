@@ -79,4 +79,4 @@ repos:
     rev: v2.3.0
     hooks:
       - id: codespell
-        args: ['--write-changes', '--ignore-words-list=theses']
+        args: ['--write-changes', '--ignore-words-list=theses,fom']

@@ -1,19 +1,19 @@
 #ifndef ROS_DVL_A50_DRIVER_LIB_PARSER_HPP
 #define ROS_DVL_A50_DRIVER_LIB_PARSER_HPP
 
-#include <string>
 #include <functional>
 #include <nlohmann/json.hpp>
+#include <string>
 
 #include "lib/types.hpp"
 
-namespace dvl_a50::lib
-{
+namespace dvl_a50::lib {
 
-using VelocityMessageCallback = std::function<void(const VelocityMessage&)>;
-using PositionLocalMessageCallback = std::function<void(const PositionLocalMessage&)>;
+using VelocityMessageCallback = std::function<void(const VelocityMessage &)>;
+using PositionLocalMessageCallback =
+    std::function<void(const PositionLocalMessage &)>;
 
-void process_buffer(std::string& buffer,
+void process_buffer(std::string &buffer,
                     VelocityMessageCallback velocity_callback,
                     PositionLocalMessageCallback position_callback);
 
