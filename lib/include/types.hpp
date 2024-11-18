@@ -52,6 +52,7 @@ struct PositionLocalMessage
     int status;
     std::string format;
 };
+
 } // namespace dvl_a50::lib
 
 namespace nlohmann
@@ -104,7 +105,7 @@ inline void from_json(const nlohmann::json& j, dvl_a50::lib::PositionLocalMessag
     j.at("status").get_to(msg.status);
     j.at("format").get_to(msg.format);
 }
-} // namespace nlohmann
 
+} // namespace nlohmann
 
 #endif  // ROS_DVL_A50_DRIVER_LIB_TYPES_HPP

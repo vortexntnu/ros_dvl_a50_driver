@@ -34,6 +34,7 @@ private:
     VelocityMessageCallback velocity_callback_;
     PositionLocalMessageCallback position_callback_;
 };
+
 } // namespace dvl_a50::lib
 
 #endif  // ROS_DVL_A50_DRIVER_LIB_DRIVER_HPP

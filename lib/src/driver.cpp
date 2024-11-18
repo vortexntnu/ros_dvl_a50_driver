@@ -33,7 +33,7 @@ void process_message(const std::string& data,
     } else if (type == "position_local") {
         position_callback(msg.get<PositionLocalMessage>());
     } else {
-        spdlog::info("Unknown message type '{}' received, skipping...", type);
+        spdlog::warn("Unknown message type '{}' received, skipping...", type);
     }
 }
 
@@ -82,4 +82,5 @@ void DvlA50Driver::read() {
             }
         });
 }
+
 } // namespace dvl_a50::lib

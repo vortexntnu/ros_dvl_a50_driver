@@ -5,7 +5,6 @@
 
 int main(int argc, char **argv)
 {
-
     spdlog::set_level(spdlog::level::debug);
     rclcpp::init(argc, argv);
 
