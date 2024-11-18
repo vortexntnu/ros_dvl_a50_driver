@@ -1,4 +1,4 @@
-name: Run Industrial-CI Workflow
+name: Build status
 # Run industrial-ci on a repository
 on:
   push:
