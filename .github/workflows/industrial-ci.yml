@@ -7,4 +7,4 @@ on:
     - cron: '0 1 * * *' # Runs daily to check for dependency issues or flaking tests
 jobs:
   call_reusable_workflow:
-    uses: vortexntnu/vortex-ci/.github/workflows/reusable-industrial-ci.yml@main
+    uses: vortexntnu/vortex-ci/.github/workflows/reusable-industrial-ci.yml@refactor/industrial-ci
