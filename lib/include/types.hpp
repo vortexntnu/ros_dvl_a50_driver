@@ -3,7 +3,7 @@
 
 #include <array>
 #include <cstdint>
-#include <nlohmann/json.hpp> // Include the JSON library
+#include <nlohmann/json.hpp>
 #include <string>
 #include <vector>
 
@@ -48,6 +48,7 @@ struct PositionLocalMessage {
   int status;
   std::string format;
 };
+
 } // namespace dvl_a50::lib
 
 namespace nlohmann {
@@ -69,7 +70,6 @@ inline void from_json(const nlohmann::json &j,
   j.at("vz").get_to(msg.vz);
   j.at("fom").get_to(msg.fom);
 
-  // Parse covariance matrix
   const auto &cov_json = j.at("covariance");
   for (size_t i = 0; i < msg.covariance.size(); ++i) {
     cov_json.at(i).get_to(msg.covariance[i]);
@@ -99,6 +99,7 @@ inline void from_json(const nlohmann::json &j,
   j.at("status").get_to(msg.status);
   j.at("format").get_to(msg.format);
 }
+
 } // namespace nlohmann
 
 #endif // ROS_DVL_A50_DRIVER_LIB_TYPES_HPP
