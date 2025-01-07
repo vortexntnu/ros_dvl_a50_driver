@@ -1,5 +1,6 @@
 # ros_dvl_a50_driver
 [![Build status](https://github.com/vortexntnu/ros_dvl_a50_driver/actions/workflows/industrial-ci.yml/badge.svg)](https://github.com/vortexntnu/ros_dvl_a50_driver/actions/workflows/industrial-ci.yml)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/vortexntnu/ros_dvl_a50_driver/main.svg)](https://results.pre-commit.ci/latest/github/vortexntnu/ros_dvl_a50_driver/main)
 
 ROS2 driver for the WaterLinked DVL-A50. Currently work-in-progress.
 
