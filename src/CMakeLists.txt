@@ -16,8 +16,15 @@ ament_target_dependencies(ros_dvl_a50_driver_node
     geometry_msgs
     tf2
     tf2_geometry_msgs
+    vortex_msgs
 )
 
 install(TARGETS ros_dvl_a50_driver_node
     DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+  launch
+  config
+  DESTINATION share/${PROJECT_NAME}/
 )

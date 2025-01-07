@@ -1,4 +1,4 @@
-#include "ros_translator.hpp"
+#include <ros_dvl_a50_driver/ros_translator.hpp>
 
 #include <cmath>
 
@@ -62,6 +62,17 @@ geometry_msgs::msg::PoseWithCovarianceStamped position_local_to_pose(
     pose_msg.pose.covariance[14] = msg.std * msg.std;
 
     return pose_msg;
+}
+
+vortex_msgs::msg::DVLDepth velocity_message_to_depth(
+    const dvl_a50::lib::VelocityMessage& msg,
+    const std::string frame_id) {
+    vortex_msgs::msg::DVLDepth depth_msg;
+    depth_msg.header.stamp = rclcpp::Clock().now();
+    depth_msg.header.frame_id = frame_id;
+    depth_msg.depth = msg.altitude;
+
+    return depth_msg;
 }
 
 }  // namespace dvl_a50::ros

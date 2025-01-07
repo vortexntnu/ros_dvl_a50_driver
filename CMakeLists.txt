@@ -13,6 +13,7 @@ find_package(sensor_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(vortex_msgs REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(spdlog REQUIRED)
 

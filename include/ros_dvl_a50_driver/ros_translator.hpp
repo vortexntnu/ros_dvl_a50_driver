@@ -5,6 +5,7 @@
 
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
+#include <vortex_msgs/msg/dvl_depth.hpp>
 
 namespace dvl_a50::ros {
 
@@ -13,6 +14,9 @@ geometry_msgs::msg::TwistWithCovarianceStamped velocity_message_to_twist(
     const std::string& frame_id);
 geometry_msgs::msg::PoseWithCovarianceStamped position_local_to_pose(
     const dvl_a50::lib::PositionLocalMessage& msg,
+    const std::string frame_id);
+vortex_msgs::msg::DVLDepth velocity_message_to_depth(
+    const dvl_a50::lib::VelocityMessage& msg,
     const std::string frame_id);
 
 }  // namespace dvl_a50::ros
