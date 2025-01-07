@@ -7,7 +7,7 @@ DvlA50DriverNode::DvlA50DriverNode() : Node("dvl_a50_driver_node") {
     this->declare_parameter<std::string>("ip_address", "192.168.194.95");
     this->declare_parameter<int>("port", 16171);
     this->declare_parameter<std::string>("frame_id", "dvl_link");
-    this->declare_parameter<strin>("twist_topic", "dvl/twist");
+    this->declare_parameter<std::string>("twist_topic", "dvl/twist");
     this->declare_parameter<std::string>("pose_topic", "dvl/pose");
     this->declare_parameter<std::string>("depth_topic", "dvl/depth");
 

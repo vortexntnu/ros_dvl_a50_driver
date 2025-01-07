@@ -30,4 +30,10 @@ FetchContent_MakeAvailable(json)
 add_subdirectory(lib)
 add_subdirectory(src)
 
+install(DIRECTORY
+  launch
+  config
+  DESTINATION share/${PROJECT_NAME}/
+)
+
 ament_package()
