@@ -10,3 +10,4 @@ jobs:
     uses: vortexntnu/vortex-ci/.github/workflows/reusable-industrial-ci.yml@main
     with:
         additional_debs: "git"
+        upstream_workspace: './dependencies.repos'
