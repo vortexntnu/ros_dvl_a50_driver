@@ -20,10 +20,10 @@ DvlA50DriverNode::DvlA50DriverNode() : Node("dvl_a50_driver_node") {
     auto qos_sensor_data = rclcpp::QoS(rclcpp::QoSInitialization(qos_profile.history, 1), qos_profile);
     twist_publisher_ =
         this->create_publisher<geometry_msgs::msg::TwistWithCovarianceStamped>(
-            "dvl/twist", qos_sensor_data);
+            "orca/twist", qos_sensor_data);
     pose_publisher_ =
         this->create_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
-            "dvl/pose", qos_sensor_data);
+            "orca/pose", qos_sensor_data);
     depth_publisher_ =
         this->create_publisher<vortex_msgs::msg::DVLDepth>(
             "dvl/depth", qos_sensor_data);
