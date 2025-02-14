@@ -23,4 +23,3 @@ ament_target_dependencies(ros_dvl_a50_driver_node
 install(TARGETS ros_dvl_a50_driver_node
     DESTINATION lib/${PROJECT_NAME}
 )
-

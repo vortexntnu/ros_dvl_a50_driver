@@ -11,23 +11,24 @@ DvlA50DriverNode::DvlA50DriverNode() : Node("dvl_a50_driver_node") {
     this->declare_parameter<std::string>("pose_topic", "dvl/pose");
     this->declare_parameter<std::string>("depth_topic", "dvl/depth");
 
-
     std::string ip_address = this->get_parameter("ip_address").as_string();
     int port = this->get_parameter("port").as_int();
     frame_id_ = this->get_parameter("frame_id").as_string();
+    std::string twist_topic = this->get_parameter("twist_topic").as_string();
+    std::string pose_topic = this->get_parameter("pose_topic").as_string();
+    std::string depth_topic = this->get_parameter("depth_topic").as_string();
 
     rmw_qos_profile_t qos_profile = rmw_qos_profile_sensor_data;
-    auto qos_sensor_data = rclcpp::QoS(rclcpp::QoSInitialization(qos_profile.history, 1), qos_profile);
+    auto qos_sensor_data = rclcpp::QoS(
+        rclcpp::QoSInitialization(qos_profile.history, 1), qos_profile);
     twist_publisher_ =
         this->create_publisher<geometry_msgs::msg::TwistWithCovarianceStamped>(
-            "orca/twist", qos_sensor_data);
+            twist_topic, qos_sensor_data);
     pose_publisher_ =
         this->create_publisher<geometry_msgs::msg::PoseWithCovarianceStamped>(
-            "orca/pose", qos_sensor_data);
-    depth_publisher_ =
-        this->create_publisher<vortex_msgs::msg::DVLDepth>(
-            "dvl/depth", qos_sensor_data);
-    
+            pose_topic, qos_sensor_data);
+    depth_publisher_ = this->create_publisher<vortex_msgs::msg::DVLDepth>(
+        depth_topic, qos_sensor_data);
 
     auto velocity_callback = [this](const dvl_a50::lib::VelocityMessage& msg) {
         publish_twist(msg);
@@ -54,8 +55,7 @@ void DvlA50DriverNode::publish_pose(
     pose_publisher_->publish(pose_msg);
 }
 
-void DvlA50DriverNode::publish_depth(
-    const dvl_a50::lib::VelocityMessage& msg) {
+void DvlA50DriverNode::publish_depth(const dvl_a50::lib::VelocityMessage& msg) {
     auto depth_msg = velocity_message_to_depth(msg, frame_id_);
     depth_publisher_->publish(depth_msg);
 }

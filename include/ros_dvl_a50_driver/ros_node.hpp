@@ -4,8 +4,8 @@
 #include <tf2/LinearMath/Quaternion.h>
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
-#include <vortex_msgs/msg/dvl_depth.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <vortex_msgs/msg/dvl_depth.hpp>
 
 #include "driver.hpp"
 

@@ -3,7 +3,6 @@ ros_dvl_a50_driver_node:
     ip_address: "192.168.194.95"
     port: 16171
     frame_id: "dvl_link"
-    twist_topic: "/dvl_twist"
-    pose_topic: "/dvl_pose"
-    depth_topic: "/dvl_depth"
-    
+    twist_topic: "/orca/twist"
+    pose_topic: "/orca/pose"
+    depth_topic: "/dvl/depth"
