@@ -64,15 +64,15 @@ geometry_msgs::msg::PoseWithCovarianceStamped position_local_to_pose(
     return pose_msg;
 }
 
-vortex_msgs::msg::DVLDepth velocity_message_to_depth(
+vortex_msgs::msg::DVLAltitude velocity_message_to_altitude(
     const dvl_a50::lib::VelocityMessage& msg,
     const std::string frame_id) {
-    vortex_msgs::msg::DVLDepth depth_msg;
-    depth_msg.header.stamp = rclcpp::Clock().now();
-    depth_msg.header.frame_id = frame_id;
-    depth_msg.depth = msg.altitude;
+    vortex_msgs::msg::DVLAltitude altitude_msg;
+    altitude_msg.header.stamp = rclcpp::Clock().now();
+    altitude_msg.header.frame_id = frame_id;
+    altitude_msg.altitude = msg.altitude;
 
-    return depth_msg;
+    return altitude_msg;
 }
 
 }  // namespace dvl_a50::ros
