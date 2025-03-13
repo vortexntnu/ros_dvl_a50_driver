@@ -28,7 +28,7 @@ rclcpp_components_register_node(
   PLUGIN "dvl_a50::ros::DvlA50DriverNode"
   EXECUTABLE ${PROJECT_NAME}_node
   )
-    
+
 ament_export_targets(export_${LIB_NAME})
 
 install(TARGETS ${LIB_NAME}

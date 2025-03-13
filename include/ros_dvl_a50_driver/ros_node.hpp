@@ -1,13 +1,13 @@
 #ifndef ROS_DVL_A50_DRIVER_ROS_ROS_NODE_HPP
 #define ROS_DVL_A50_DRIVER_ROS_ROS_NODE_HPP
 
+#include <spdlog/spdlog.h>
 #include <tf2/LinearMath/Quaternion.h>
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <vortex_msgs/msg/dvl_altitude.hpp>
-#include <spdlog/spdlog.h>
 #include <rclcpp_components/register_node_macro.hpp>
+#include <vortex_msgs/msg/dvl_altitude.hpp>
 
 #include "driver.hpp"
 
@@ -15,7 +15,7 @@ namespace dvl_a50::ros {
 
 class DvlA50DriverNode : public rclcpp::Node {
    public:
-    DvlA50DriverNode(const rclcpp::NodeOptions & options);
+    DvlA50DriverNode(const rclcpp::NodeOptions& options);
 
    private:
     void publish_twist(const dvl_a50::lib::VelocityMessage& msg);

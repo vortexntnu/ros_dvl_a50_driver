@@ -3,8 +3,9 @@
 
 namespace dvl_a50::ros {
 
-DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions & options) : Node("dvl_a50_driver_node", options) {
-        const auto launch_message = R"(
+DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions& options)
+    : Node("dvl_a50_driver_node", options) {
+    const auto launch_message = R"(
          ______     ___            _    ____   ___
         |  _ \ \   / / |          / \  | ___| / _ \
         | | | \ \ / /| |   _____ / _ \ |___ \| | | |
@@ -75,7 +76,6 @@ void DvlA50DriverNode::publish_altitude(
     altitude_publisher_->publish(altitude_msg);
 }
 
-RCLCPP_COMPONENTS_REGISTER_NODE(
-    dvl_a50::ros::DvlA50DriverNode)
+RCLCPP_COMPONENTS_REGISTER_NODE(dvl_a50::ros::DvlA50DriverNode)
 
 }  // namespace dvl_a50::ros
