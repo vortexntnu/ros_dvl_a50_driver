@@ -3,7 +3,20 @@
 
 namespace dvl_a50::ros {
 
-DvlA50DriverNode::DvlA50DriverNode() : Node("dvl_a50_driver_node") {
+DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions & options) : Node("dvl_a50_driver_node", options) {
+        const auto launch_message = R"(
+         ______     ___            _    ____   ___
+        |  _ \ \   / / |          / \  | ___| / _ \
+        | | | \ \ / /| |   _____ / _ \ |___ \| | | |
+        | |_| |\ V / | |__|_____/ ___ \ ___) | |_| |
+        |____/  \_/ _|_____|   /_/   \_\____/ \___/
+        |  _ \ _ __(_)_   _____ _ __
+        | | | | '__| \ \ / / _ \ '__|
+        | |_| | |  | |\ V /  __/ |
+        |____/|_|  |_| \_/ \___|_|
+    )";
+    spdlog::info(launch_message);
+
     this->declare_parameter<std::string>("ip_address", "192.168.194.95");
     this->declare_parameter<int>("port", 16171);
     this->declare_parameter<std::string>("frame_id", "dvl_link");
@@ -61,5 +74,8 @@ void DvlA50DriverNode::publish_altitude(
     auto altitude_msg = velocity_message_to_altitude(msg, frame_id_);
     altitude_publisher_->publish(altitude_msg);
 }
+
+RCLCPP_COMPONENTS_REGISTER_NODE(
+    dvl_a50::ros::DvlA50DriverNode)
 
 }  // namespace dvl_a50::ros

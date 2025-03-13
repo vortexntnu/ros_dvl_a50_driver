@@ -4,6 +4,8 @@ target_include_directories(dvl_a50_driver PUBLIC
     include
 )
 
+target_compile_options(dvl_a50_driver PUBLIC -fPIC)
+
 target_link_libraries(dvl_a50_driver PUBLIC
     Boost::boost
     nlohmann_json::nlohmann_json
