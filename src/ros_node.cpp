@@ -48,7 +48,7 @@ DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions& options)
             pose_topic, qos_sensor_data);
     altitude_publisher_ = this->create_publisher<vortex_msgs::msg::DVLAltitude>(
         altitude_topic, qos_sensor_data);
-    
+
     publish_transducer_array_ =
         this->get_parameter("publish_transducer_array").as_bool();
     if (publish_transducer_array_) {

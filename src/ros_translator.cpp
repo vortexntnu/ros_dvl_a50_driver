@@ -78,7 +78,6 @@ vortex_msgs::msg::DVLAltitude velocity_message_to_altitude(
 vortex_msgs::msg::TransducerArray velocity_message_to_transducer_array(
     const dvl_a50::lib::VelocityMessage& msg,
     const std::string& frame_id) {
-
     vortex_msgs::msg::TransducerArray transducer_array_msg;
 
     transducer_array_msg.header.stamp = rclcpp::Clock().now();
@@ -86,13 +85,14 @@ vortex_msgs::msg::TransducerArray velocity_message_to_transducer_array(
 
     transducer_array_msg.transducers.resize(msg.transducers.size());
 
-    auto convert_transducer = [](const dvl_a50::lib::Transducer &in) -> vortex_msgs::msg::Transducer {
+    auto convert_transducer =
+        [](const dvl_a50::lib::Transducer& in) -> vortex_msgs::msg::Transducer {
         vortex_msgs::msg::Transducer out;
-        out.id         = in.id;
-        out.velocity   = in.velocity;
-        out.distance   = in.distance;
-        out.rssi       = in.rssi;
-        out.nsd        = in.nsd;
+        out.id = in.id;
+        out.velocity = in.velocity;
+        out.distance = in.distance;
+        out.rssi = in.rssi;
+        out.nsd = in.nsd;
         out.beam_valid = in.beam_valid;
         return out;
     };
