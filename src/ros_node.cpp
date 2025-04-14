@@ -18,12 +18,14 @@ DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions& options)
     )";
     spdlog::info(launch_message);
 
-    this->declare_parameter<std::string>("ip_address", "192.168.194.95");
-    this->declare_parameter<int>("port", 16171);
-    this->declare_parameter<std::string>("frame_id", "dvl_link");
-    this->declare_parameter<std::string>("twist_topic", "dvl/twist");
-    this->declare_parameter<std::string>("pose_topic", "dvl/pose");
-    this->declare_parameter<std::string>("altitude_topic", "dvl/altitude");
+    this->declare_parameter<std::string>("ip_address");
+    this->declare_parameter<int>("port");
+    this->declare_parameter<std::string>("frame_id");
+    this->declare_parameter<std::string>("twist_topic");
+    this->declare_parameter<std::string>("pose_topic");
+    this->declare_parameter<std::string>("altitude_topic");
+    this->declare_parameter<std::string>("transducer_array_topic");
+    this->declare_parameter<bool>("publish_transducer_array");
 
     std::string ip_address = this->get_parameter("ip_address").as_string();
     int port = this->get_parameter("port").as_int();
@@ -32,6 +34,8 @@ DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions& options)
     std::string pose_topic = this->get_parameter("pose_topic").as_string();
     std::string altitude_topic =
         this->get_parameter("altitude_topic").as_string();
+    std::string transducer_array_topic =
+        this->get_parameter("transducer_array_topic").as_string();
 
     rmw_qos_profile_t qos_profile = rmw_qos_profile_sensor_data;
     auto qos_sensor_data = rclcpp::QoS(
@@ -44,10 +48,21 @@ DvlA50DriverNode::DvlA50DriverNode(const rclcpp::NodeOptions& options)
             pose_topic, qos_sensor_data);
     altitude_publisher_ = this->create_publisher<vortex_msgs::msg::DVLAltitude>(
         altitude_topic, qos_sensor_data);
+    
+    publish_transducer_array_ =
+        this->get_parameter("publish_transducer_array").as_bool();
+    if (publish_transducer_array_) {
+        transducer_array_publisher_ =
+            this->create_publisher<vortex_msgs::msg::TransducerArray>(
+                transducer_array_topic, qos_sensor_data);
+    }
 
     auto velocity_callback = [this](const dvl_a50::lib::VelocityMessage& msg) {
         publish_twist(msg);
         publish_altitude(msg);
+        if (publish_transducer_array_) {
+            publish_transducer_array(msg);
+        }
     };
 
     auto position_callback =
@@ -74,6 +89,13 @@ void DvlA50DriverNode::publish_altitude(
     const dvl_a50::lib::VelocityMessage& msg) {
     auto altitude_msg = velocity_message_to_altitude(msg, frame_id_);
     altitude_publisher_->publish(altitude_msg);
+}
+
+void DvlA50DriverNode::publish_transducer_array(
+    const dvl_a50::lib::VelocityMessage& msg) {
+    auto transducer_array_msg =
+        velocity_message_to_transducer_array(msg, frame_id_);
+    transducer_array_publisher_->publish(transducer_array_msg);
 }
 
 RCLCPP_COMPONENTS_REGISTER_NODE(dvl_a50::ros::DvlA50DriverNode)

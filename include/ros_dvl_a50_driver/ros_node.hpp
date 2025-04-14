@@ -8,6 +8,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp_components/register_node_macro.hpp>
 #include <vortex_msgs/msg/dvl_altitude.hpp>
+#include <vortex_msgs/msg/transducer_array.hpp>
 
 #include "driver.hpp"
 
@@ -21,6 +22,7 @@ class DvlA50DriverNode : public rclcpp::Node {
     void publish_twist(const dvl_a50::lib::VelocityMessage& msg);
     void publish_pose(const dvl_a50::lib::PositionLocalMessage& msg);
     void publish_altitude(const dvl_a50::lib::VelocityMessage& msg);
+    void publish_transducer_array(const dvl_a50::lib::VelocityMessage& msg);
 
     rclcpp::Publisher<geometry_msgs::msg::TwistWithCovarianceStamped>::SharedPtr
         twist_publisher_;
@@ -28,9 +30,13 @@ class DvlA50DriverNode : public rclcpp::Node {
         pose_publisher_;
     rclcpp::Publisher<vortex_msgs::msg::DVLAltitude>::SharedPtr
         altitude_publisher_;
+    rclcpp::Publisher<vortex_msgs::msg::TransducerArray>::SharedPtr
+        transducer_array_publisher_;
     std::shared_ptr<dvl_a50::lib::DvlA50Driver> dvl_driver_;
 
     std::string frame_id_;
+
+    bool publish_transducer_array_ = false;
 };
 
 }  // namespace dvl_a50::ros

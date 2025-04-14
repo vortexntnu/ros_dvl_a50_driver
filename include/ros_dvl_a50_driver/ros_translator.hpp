@@ -6,6 +6,7 @@
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
 #include <vortex_msgs/msg/dvl_altitude.hpp>
+#include <vortex_msgs/msg/transducer_array.hpp>
 
 namespace dvl_a50::ros {
 
@@ -18,6 +19,9 @@ geometry_msgs::msg::PoseWithCovarianceStamped position_local_to_pose(
 vortex_msgs::msg::DVLAltitude velocity_message_to_altitude(
     const dvl_a50::lib::VelocityMessage& msg,
     const std::string frame_id);
+vortex_msgs::msg::TransducerArray velocity_message_to_transducer_array(
+    const dvl_a50::lib::VelocityMessage& msg,
+    const std::string& frame_id);
 
 }  // namespace dvl_a50::ros
 
