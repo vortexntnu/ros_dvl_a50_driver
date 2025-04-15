@@ -6,3 +6,5 @@
     twist_topic: "/orca/twist"
     pose_topic: "/orca/pose"
     altitude_topic: "/dvl/altitude"
+    transducer_array_topic: "/dvl/transducer_array"
+    publish_transducer_array: true
